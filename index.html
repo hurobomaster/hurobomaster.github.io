@@ -164,12 +164,21 @@
   </style>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <!-- Video playback nudge (if any video elements exist) -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      document.querySelectorAll("video").forEach(v => {
-        v.play().catch(() => {});
-      });
+      const videos = document.querySelectorAll("video[data-src]");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                video.src = video.getAttribute("data-src");
+                video.autoplay = true;
+                video.loop = true;
+                observer.unobserve(video);
+            }
+        });
+      }, { threshold: 0.1 });
+      videos.forEach(v => observer.observe(v));
     });
   </script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -259,9 +268,8 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <a href="res/figs/tricosphere.mp4" target="_blank">
-          <img class="img-fluid" src="res/figs/tricosphere_thumb.jpg" width="100%" style="border-radius:10px; cursor:pointer; transition: opacity 0.2s;" alt="TriCoSphere video" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
-        </a>
+        <video playsinline autoplay loop muted data-src="res/figs/tricosphere.mp4" width="100%" preload="metadata"
+               style="border-radius:10px;"></video>
       </center>
     </div>
     <div class="col-md-9">
@@ -289,9 +297,8 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <a href="res/figs/nlips.mp4" target="_blank">
-          <img class="img-fluid" src="res/figs/nlips_thumb.jpg" width="100%" style="border-radius:10px; cursor:pointer; transition: opacity 0.2s;" alt="NLiPsCalib video" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
-        </a>
+        <video playsinline autoplay loop muted data-src="res/figs/nlips.mp4" width="100%" preload="metadata"
+               style="border-radius:10px;"></video>
       </center>
     </div>
     <div class="col-md-9">
