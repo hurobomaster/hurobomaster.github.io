@@ -166,21 +166,12 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const videos = document.querySelectorAll("video[data-src]");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const video = entry.target;
-                video.src = video.getAttribute("data-src");
-                video.load();
-                video.autoplay = true;
-                video.loop = true;
-                video.play().catch(() => {});
-                observer.unobserve(video);
-            }
-        });
-      }, { threshold: 0.1 });
-      videos.forEach(video => observer.observe(video));
+      // Mobile-friendly: videos with src attribute handle autoplay natively
+      const videos = document.querySelectorAll("video");
+      videos.forEach(video => {
+        // Ensure playback starts on mobile (playsinline + muted + autoplay)
+        video.play().catch(() => {});
+      });
     });
   </script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -270,7 +261,7 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted data-src="res/figs/tricosphere.mp4" width="100%" preload="none" poster="res/figs/tricosphere_poster.jpg"
+        <video playsinline autoplay loop muted src="res/figs/tricosphere.mp4" width="100%" preload="metadata" poster="res/figs/tricosphere_poster.jpg"
                style="border-radius:10px;"></video>
       </center>
     </div>
@@ -299,7 +290,7 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted data-src="res/figs/nlips.mp4" width="100%" preload="none" poster="res/figs/nlips_poster.jpg"
+        <video playsinline autoplay loop muted src="res/figs/nlips.mp4" width="100%" preload="metadata" poster="res/figs/nlips_poster.jpg"
                style="border-radius:10px;"></video>
       </center>
     </div>
