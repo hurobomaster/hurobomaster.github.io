@@ -166,9 +166,13 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Retry video playback on mobile (some browsers need a nudge)
+      // Ensure video playback starts (handles mobile + desktop)
       document.querySelectorAll("video").forEach(v => {
-        v.play().catch(() => {});
+        if (v.readyState >= 2) {
+          v.play().catch(() => {});
+        } else {
+          v.addEventListener("canplay", () => v.play().catch(() => {}));
+        }
       });
     });
   </script>
@@ -260,7 +264,7 @@
     <div class="col-md-3 align-column-center">
       <center>
         <video playsinline autoplay loop muted src="res/figs/tricosphere.mp4" width="100%" preload="metadata"
-               style="border-radius:10px;"></video>
+               style="border-radius:10px; aspect-ratio: 16/9; background: #f0f0f0;"></video>
       </center>
     </div>
     <div class="col-md-9">
@@ -289,7 +293,7 @@
     <div class="col-md-3 align-column-center">
       <center>
         <video playsinline autoplay loop muted src="res/figs/nlips.mp4" width="100%" preload="metadata"
-               style="border-radius:10px;"></video>
+               style="border-radius:10px; aspect-ratio: 16/9; background: #f0f0f0;"></video>
       </center>
     </div>
     <div class="col-md-9">
