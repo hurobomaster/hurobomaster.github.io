@@ -172,8 +172,10 @@
             if (entry.isIntersecting) {
                 const video = entry.target;
                 video.src = video.getAttribute("data-src");
+                video.load();
                 video.autoplay = true;
                 video.loop = true;
+                video.play().catch(() => {});
                 observer.unobserve(video);
             }
         });
@@ -268,7 +270,7 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted data-src="res/figs/tricosphere.mp4" width="100%" preload="metadata"
+        <video playsinline autoplay loop muted data-src="res/figs/tricosphere.mp4" width="100%" preload="none" poster="res/figs/tricosphere_poster.jpg"
                style="border-radius:10px;"></video>
       </center>
     </div>
@@ -297,7 +299,7 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted data-src="res/figs/nlips.mp4" width="100%" preload="metadata"
+        <video playsinline autoplay loop muted data-src="res/figs/nlips.mp4" width="100%" preload="none" poster="res/figs/nlips_poster.jpg"
                style="border-radius:10px;"></video>
       </center>
     </div>
