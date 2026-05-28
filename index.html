@@ -594,12 +594,29 @@
 <div class="container">
   <div class="row align-items-center" style="font-size:14px; color:#555;">
     <div class="col-12 text-center">
-      👁️ <span id="busuanzi_value_site_pv"></span> visits
+      👁️ 今日 <span id="today_count">0</span>
+      &nbsp;·&nbsp; 总计 <span id="busuanzi_value_site_pv"></span>
+      &nbsp;·&nbsp; 访客 <span id="busuanzi_value_site_uv"></span>
     </div>
   </div>
 </div>
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  // Simple daily visitor counter using localStorage
+  (function() {
+    const today = new Date().toDateString();
+    const key = "visit_" + today;
+    let count = localStorage.getItem(key);
+    if (count) {
+      count = parseInt(count) + 1;
+    } else {
+      count = 1;
+    }
+    localStorage.setItem(key, count);
+    document.getElementById("today_count").textContent = count;
+  })();
+</script>
 
 <div class="section-div"></div>
 
