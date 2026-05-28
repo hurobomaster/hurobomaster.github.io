@@ -164,15 +164,11 @@
   </style>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Video playback nudge (if any video elements exist) -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Ensure video playback starts (handles mobile + desktop)
       document.querySelectorAll("video").forEach(v => {
-        if (v.readyState >= 2) {
-          v.play().catch(() => {});
-        } else {
-          v.addEventListener("canplay", () => v.play().catch(() => {}));
-        }
+        v.play().catch(() => {});
       });
     });
   </script>
@@ -263,9 +259,9 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted width="100%" preload="auto" style="border-radius:10px;">
-          <source src="res/figs/tricosphere.mp4" type="video/mp4">
-        </video>
+        <a href="res/figs/tricosphere.mp4" target="_blank">
+          <img class="img-fluid" src="res/figs/tricosphere_thumb.jpg" width="100%" style="border-radius:10px; cursor:pointer; transition: opacity 0.2s;" alt="TriCoSphere video" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
+        </a>
       </center>
     </div>
     <div class="col-md-9">
@@ -293,9 +289,9 @@
   <div class="row align-items-center">
     <div class="col-md-3 align-column-center">
       <center>
-        <video playsinline autoplay loop muted width="100%" preload="auto" style="border-radius:10px;">
-          <source src="res/figs/nlips.mp4" type="video/mp4">
-        </video>
+        <a href="res/figs/nlips.mp4" target="_blank">
+          <img class="img-fluid" src="res/figs/nlips_thumb.jpg" width="100%" style="border-radius:10px; cursor:pointer; transition: opacity 0.2s;" alt="NLiPsCalib video" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
+        </a>
       </center>
     </div>
     <div class="col-md-9">
